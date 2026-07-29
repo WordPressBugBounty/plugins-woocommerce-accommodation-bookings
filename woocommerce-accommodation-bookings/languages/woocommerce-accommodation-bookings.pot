@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Accommodation Bookings 1.3.10\n"
+"Project-Id-Version: WooCommerce Accommodation Bookings 1.3.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-accommodation-bookings\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-27T18:16:39+00:00\n"
+"POT-Creation-Date: 2026-07-29T13:51:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: woocommerce-accommodation-bookings\n"
@@ -116,103 +116,122 @@ msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:16
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:17
+#: build/js/frontend/booking-form.js:1
 msgid "January"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:17
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:18
+#: build/js/frontend/booking-form.js:1
 msgid "February"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:18
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:19
+#: build/js/frontend/booking-form.js:1
 msgid "March"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:19
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:20
+#: build/js/frontend/booking-form.js:1
 msgid "April"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:20
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:21
+#: build/js/frontend/booking-form.js:1
 msgid "May"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:21
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:22
+#: build/js/frontend/booking-form.js:1
 msgid "June"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:22
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:23
+#: build/js/frontend/booking-form.js:1
 msgid "July"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:23
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:24
+#: build/js/frontend/booking-form.js:1
 msgid "August"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:24
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:25
+#: build/js/frontend/booking-form.js:1
 msgid "September"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:25
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:26
+#: build/js/frontend/booking-form.js:1
 msgid "October"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:26
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:27
+#: build/js/frontend/booking-form.js:1
 msgid "November"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:27
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:28
+#: build/js/frontend/booking-form.js:1
 msgid "December"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:31
 #: includes/admin/views/html-accommodation-booking-availability.php:78
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:32
+#: build/js/frontend/booking-form.js:1
 msgid "Monday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:32
 #: includes/admin/views/html-accommodation-booking-availability.php:79
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:33
+#: build/js/frontend/booking-form.js:1
 msgid "Tuesday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:33
 #: includes/admin/views/html-accommodation-booking-availability.php:80
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:34
+#: build/js/frontend/booking-form.js:1
 msgid "Wednesday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:34
 #: includes/admin/views/html-accommodation-booking-availability.php:81
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:35
+#: build/js/frontend/booking-form.js:1
 msgid "Thursday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:35
 #: includes/admin/views/html-accommodation-booking-availability.php:82
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:36
+#: build/js/frontend/booking-form.js:1
 msgid "Friday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:36
 #: includes/admin/views/html-accommodation-booking-availability.php:83
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:37
+#: build/js/frontend/booking-form.js:1
 msgid "Saturday"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability-fields.php:37
 #: includes/admin/views/html-accommodation-booking-availability.php:77
 #: includes/admin/views/html-accommodation-booking-rates-fields.php:38
+#: build/js/frontend/booking-form.js:1
 msgid "Sunday"
 msgstr ""
 
@@ -358,7 +377,7 @@ msgid "Choose how the calendar is displayed on the booking form."
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-data.php:57
-msgid "Display calendar on click"
+msgid "Show calendar when date field is selected"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-data.php:58
@@ -473,38 +492,42 @@ msgstr ""
 msgid "Arriving/leaving"
 msgstr ""
 
+#: includes/class-wc-accommodation-bookings-plugin.php:180
+msgid "Dependency check failed. Please make sure all dependencies are met."
+msgstr ""
+
+#: includes/class-wc-accommodation-bookings-plugin.php:183
+msgid "Accommodation Bookings requires WooCommerce Bookings plugin activated."
+msgstr ""
+
+#: includes/class-wc-accommodation-bookings-plugin.php:186
+msgid "Accommodation Bookings requires WooCommerce Bookings version 1.9+."
+msgstr ""
+
+#: includes/class-wc-accommodation-bookings-plugin.php:189
+msgid "Accommodation Bookings requires PHP version 7.4+."
+msgstr ""
+
 #. translators: %s WC download URL link.
-#: includes/class-wc-accommodation-bookings-plugin.php:184
+#: includes/class-wc-accommodation-bookings-plugin.php:208
 #, php-format
 msgid "Accommodation Bookings requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:358
+#: includes/class-wc-accommodation-bookings-plugin.php:382
 msgid "View Documentation"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:358
+#: includes/class-wc-accommodation-bookings-plugin.php:382
 msgid "Docs"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:359
+#: includes/class-wc-accommodation-bookings-plugin.php:383
 msgid "Visit Premium Customer Support Forum"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:359
+#: includes/class-wc-accommodation-bookings-plugin.php:383
 msgid "Premium Support"
-msgstr ""
-
-#: includes/class-wc-accommodation-dependencies.php:80
-msgid "Accommodation Bookings requires Bookings plugin activated."
-msgstr ""
-
-#: includes/class-wc-accommodation-dependencies.php:84
-msgid "Accommodation Bookings requires Bookings version 1.9+."
-msgstr ""
-
-#: includes/class-wc-accommodation-dependencies.php:88
-msgid "Accommodation Bookings requires PHP version 7.4 or above."
 msgstr ""
 
 #: includes/class-wc-product-accommodation-booking.php:128
@@ -545,6 +568,10 @@ msgstr ""
 
 #: build/js/frontend/booking-form.js:1
 msgid "Available for check-in only."
+msgstr ""
+
+#: build/js/frontend/booking-form.js:1
+msgid "Fully booked and unavailable."
 msgstr ""
 
 #: build/js/frontend/booking-form.js:1
