@@ -94,11 +94,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		/**
 		 * Get resources objects.
 		 *
-		 * @param WC_Product
-		 *
-		 * @return array(
-		 *   type WC_Product_Accommodation_Booking_Resource
-		 * )
+		 * @return array Array of WC_Product_Accommodation_Booking_Resource objects.
 		 */
 		public function get_resources() {
 			$product_resources = array();
@@ -235,7 +231,6 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		 * Find available and booked blocks for specific resources (if any) and return them as array.
 		 *
 		 * @param  array   $blocks
-		 * @param  array   $intervals
 		 * @param  integer $resource_id
 		 * @param  integer $from The starting date for the set of blocks
 		 * @param  integer $to
@@ -244,26 +239,14 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		public function get_time_slots( $blocks, $resource_id = 0, $from = 0, $to = 0, $include_sold_out = false ) {
 			$bookable_product = $this;
 
-			$product_id                   = $bookable_product->get_id();
-			$transient_name               = 'book_ts_' . md5( http_build_query( array( $product_id, $resource_id, $from, $to ) ) );
-			$available_slots              = get_transient( $transient_name );
-			$booking_slots_transient_keys = array_filter( (array) get_transient( 'booking_slots_transient_keys' ) );
-
-			if ( ! isset( $booking_slots_transient_keys[ $product_id ] ) ) {
-				$booking_slots_transient_keys[ $product_id ] = array();
-			}
-
-			$booking_slots_transient_keys[ $product_id ][] = $transient_name;
-
-			// Give array of keys a long ttl because if it expires we won't be able to flush the keys when needed.
-			// We can't use 0 to never expire because then WordPress will autoload the option on every page.
-			set_transient( 'booking_slots_transient_keys', $booking_slots_transient_keys, YEAR_IN_SECONDS );
+			$product_id      = $bookable_product->get_id();
+			$transient_name  = 'book_ts_' . md5( http_build_query( array( $product_id, $resource_id, $from, $to ) ) );
+			$product_cache   = class_exists( 'WC_Bookings_Cache' ) && method_exists( 'WC_Bookings_Cache', 'get_product_cache' ) && method_exists( 'WC_Bookings_Cache', 'set_product_cache' );
+			$available_slots = $product_cache ? WC_Bookings_Cache::get_product_cache( $transient_name, $product_id ) : get_transient( $transient_name );
 
 			if ( false === $available_slots ) {
-				if ( empty( $intervals ) ) {
-					$interval  = $bookable_product->get_min_duration();
-					$intervals = array( $interval, 1 );
-				}
+				$interval  = $bookable_product->get_min_duration();
+				$intervals = array( $interval, 1 );
 
 				list( $interval, $base_interval ) = $intervals;
 
@@ -349,7 +332,40 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 					);
 				}
 
-				set_transient( $transient_name, $available_slots, YEAR_IN_SECONDS );
+				if ( $product_cache ) {
+					WC_Bookings_Cache::set_product_cache( $transient_name, $available_slots, YEAR_IN_SECONDS, $product_id );
+				} else {
+					set_transient( $transient_name, $available_slots, YEAR_IN_SECONDS );
+				}
+			}
+
+			// Repair missing registry entries so cached slots can still be invalidated.
+			if ( class_exists( 'WC_Bookings_Cache' ) && method_exists( 'WC_Bookings_Cache', 'register_booking_slots_transient' ) ) {
+				WC_Bookings_Cache::register_booking_slots_transient( $product_id, $transient_name );
+			} else {
+				// Older Bookings versions lack the bounded registration helper.
+				$registered_keys = array_filter( (array) get_transient( 'booking_slots_transient_keys' ) );
+				$product_keys    = array_values( array_unique( array_filter( (array) ( $registered_keys[ $product_id ] ?? array() ), 'is_string' ) ) );
+
+				if ( ! in_array( $transient_name, $product_keys, true ) ) {
+					$product_keys[] = $transient_name;
+					$slot_keys      = array_filter(
+						$product_keys,
+						function ( $key ) {
+							return 0 === strpos( $key, 'book_ts_' );
+						}
+					);
+
+					// Match Bookings: stop oversized legacy registries growing without draining them in one request.
+					if ( count( $slot_keys ) > 256 ) {
+						$evicted_key  = reset( $slot_keys );
+						$product_keys = array_values( array_diff( $product_keys, array( $evicted_key ) ) );
+						delete_transient( $evicted_key );
+					}
+
+					$registered_keys[ $product_id ] = $product_keys;
+					set_transient( 'booking_slots_transient_keys', $registered_keys, YEAR_IN_SECONDS );
+				}
 			}
 
 			return $available_slots;
