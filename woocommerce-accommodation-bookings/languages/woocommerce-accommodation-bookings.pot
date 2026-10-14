@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Accommodation Bookings 1.3.12\n"
+"Project-Id-Version: WooCommerce Accommodation Bookings 1.3.14\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-accommodation-bookings\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-31T10:59:57+00:00\n"
+"POT-Creation-Date: 2026-10-14T11:19:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: woocommerce-accommodation-bookings\n"
@@ -39,78 +39,83 @@ msgstr ""
 msgid "https://woocommerce.com"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-panels.php:38
-#: includes/class-wc-accommodation-booking.php:235
+#: includes/admin/class-wc-accommodation-booking-admin-panels.php:41
+#: includes/class-wc-accommodation-booking.php:248
 msgid "night"
 msgid_plural "nights"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-panels.php:120
+#: includes/admin/class-wc-accommodation-booking-admin-panels.php:123
 msgid "Rates"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-panels.php:126
+#: includes/admin/class-wc-accommodation-booking-admin-panels.php:129
 msgid "Availability"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:88
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:91
 msgid "Accommodation"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:123
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:126
 msgid "Settings saved"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:140
-#: includes/class-wc-accommodation-booking-product-tabs.php:93
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:143
+#: includes/class-wc-accommodation-booking-product-tabs.php:96
 msgid "Check-in time"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:141
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:144
 msgid "Check-in time for reservations."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:146
-#: includes/class-wc-accommodation-booking-product-tabs.php:94
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:149
+#: includes/class-wc-accommodation-booking-product-tabs.php:97
 msgid "Check-out time"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:147
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:150
 msgid "Check-out time for reservations."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:176
+#: includes/admin/class-wc-accommodation-booking-admin-product-settings.php:179
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:37
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:40
 msgid "Accommodation product"
 msgstr ""
 
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:65
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:72
+msgid "Person types were not saved. Please reload the product and try again."
+msgstr ""
+
 #. translators: %d: person type number
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:304
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:321
 #, php-format
 msgid "Person Type #%d"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:358
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:375
 msgid "Clear stale booking transients"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:359
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:376
 msgid "Clear transients"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:360
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:377
 msgid "This tool will clear stale booking transients that may cause availability or booking issues."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:376
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:393
 msgid "Error: You do not have permission to run this tool."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:382
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:399
 msgid "Stale booking transients cleared successfully."
 msgstr ""
 
@@ -460,105 +465,105 @@ msgstr ""
 msgid "Cost for this time period."
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-cart-manager.php:42
-#: includes/class-wc-accommodation-booking-date-picker.php:69
-#: includes/class-wc-accommodation-booking-order-manager.php:40
+#: includes/class-wc-accommodation-booking-cart-manager.php:45
+#: includes/class-wc-accommodation-booking-date-picker.php:72
+#: includes/class-wc-accommodation-booking-order-manager.php:43
 msgid "Check-in"
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-cart-manager.php:43
-#: includes/class-wc-accommodation-booking-cart-manager.php:51
-#: includes/class-wc-accommodation-booking-order-manager.php:43
-#: includes/class-wc-accommodation-booking-order-manager.php:62
+#: includes/class-wc-accommodation-booking-cart-manager.php:46
+#: includes/class-wc-accommodation-booking-cart-manager.php:54
+#: includes/class-wc-accommodation-booking-order-manager.php:46
+#: includes/class-wc-accommodation-booking-order-manager.php:65
 msgid " at "
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-cart-manager.php:50
-#: includes/class-wc-accommodation-booking-date-picker.php:78
-#: includes/class-wc-accommodation-booking-order-manager.php:57
+#: includes/class-wc-accommodation-booking-cart-manager.php:53
+#: includes/class-wc-accommodation-booking-date-picker.php:81
+#: includes/class-wc-accommodation-booking-order-manager.php:60
 msgid "Check-out"
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-order-manager.php:29
+#: includes/class-wc-accommodation-booking-order-manager.php:32
 msgid "Booking Date"
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-order-manager.php:47
+#: includes/class-wc-accommodation-booking-order-manager.php:50
 msgid "Duration"
 msgstr ""
 
-#: includes/class-wc-accommodation-booking-product-tabs.php:71
-#: includes/class-wc-accommodation-booking-product-tabs.php:91
+#: includes/class-wc-accommodation-booking-product-tabs.php:74
+#: includes/class-wc-accommodation-booking-product-tabs.php:94
 msgid "Arriving/leaving"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:180
+#: includes/class-wc-accommodation-bookings-plugin.php:183
 msgid "Dependency check failed. Please make sure all dependencies are met."
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:183
+#: includes/class-wc-accommodation-bookings-plugin.php:186
 msgid "Accommodation Bookings requires WooCommerce Bookings plugin activated."
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:186
+#: includes/class-wc-accommodation-bookings-plugin.php:189
 msgid "Accommodation Bookings requires WooCommerce Bookings version 1.9+."
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:189
+#: includes/class-wc-accommodation-bookings-plugin.php:192
 msgid "Accommodation Bookings requires PHP version 7.4+."
 msgstr ""
 
 #. translators: %s WC download URL link.
-#: includes/class-wc-accommodation-bookings-plugin.php:208
+#: includes/class-wc-accommodation-bookings-plugin.php:211
 #, php-format
 msgid "Accommodation Bookings requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:382
+#: includes/class-wc-accommodation-bookings-plugin.php:385
 msgid "View Documentation"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:382
+#: includes/class-wc-accommodation-bookings-plugin.php:385
 msgid "Docs"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:383
+#: includes/class-wc-accommodation-bookings-plugin.php:386
 msgid "Visit Premium Customer Support Forum"
 msgstr ""
 
-#: includes/class-wc-accommodation-bookings-plugin.php:383
+#: includes/class-wc-accommodation-bookings-plugin.php:386
 msgid "Premium Support"
 msgstr ""
 
-#: includes/class-wc-product-accommodation-booking.php:128
+#: includes/class-wc-product-accommodation-booking.php:127
 msgid "Accommodation booking"
 msgstr ""
 
 #. translators: %s: price
-#: includes/class-wc-product-accommodation-booking.php:222
+#: includes/class-wc-product-accommodation-booking.php:221
 #, php-format
 msgid "From %s per night"
 msgstr ""
 
-#: includes/class-wc-product-accommodation-booking.php:227
+#: includes/class-wc-product-accommodation-booking.php:226
 msgid "Free"
 msgstr ""
 
-#: includes/integrations/class-wc-accommodation-booking-addons.php:57
-#: includes/integrations/class-wc-accommodation-booking-addons.php:71
+#: includes/integrations/class-wc-accommodation-booking-addons.php:66
+#: includes/integrations/class-wc-accommodation-booking-addons.php:80
 msgid "Bookings: Multiply cost by person count"
 msgstr ""
 
-#: includes/integrations/class-wc-accommodation-booking-addons.php:61
+#: includes/integrations/class-wc-accommodation-booking-addons.php:70
 msgid "Bookings: Multiply cost by block count"
 msgstr ""
 
-#: includes/integrations/class-wc-accommodation-booking-addons.php:72
-#: includes/integrations/class-wc-accommodation-booking-addons.php:79
+#: includes/integrations/class-wc-accommodation-booking-addons.php:81
+#: includes/integrations/class-wc-accommodation-booking-addons.php:88
 msgid "Only applies to options which use quantity based prices."
 msgstr ""
 
-#: includes/integrations/class-wc-accommodation-booking-addons.php:78
+#: includes/integrations/class-wc-accommodation-booking-addons.php:87
 msgid "Bookings: Multiply cost number of nights"
 msgstr ""
 
@@ -579,9 +584,9 @@ msgid "Select check-in"
 msgstr ""
 
 #: build/js/frontend/booking-form.js:1
-msgid "Selected! Re-select to change your check-in date."
+msgid "Select check-out"
 msgstr ""
 
 #: build/js/frontend/booking-form.js:1
-msgid "Select check-out"
+msgid "Selected! Re-select to change your check-in date."
 msgstr ""
