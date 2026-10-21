@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) )
  * the `woocommerce_bookings_settings_page` filter.
  *
  * @class   WC_Accommodation_Booking_Admin_Product_Settings
- * @version 1.3.13
+ * @version 1.3.15
  */
 class WC_Accommodation_Booking_Admin_Product_Settings extends WC_Settings_API {
 	/**
@@ -54,6 +54,8 @@ class WC_Accommodation_Booking_Admin_Product_Settings extends WC_Settings_API {
 
 	/**
 	 * Maybe migrate data from old format to new one.
+	 *
+	 * @return void
 	 */
 	public function maybe_migrate() {
 		$check_in  = get_option( 'woocommerce_accommodation_bookings_check_in' );
@@ -184,12 +186,12 @@ class WC_Accommodation_Booking_Admin_Product_Settings extends WC_Settings_API {
 	}
 
 	/**
-	 * Returns WC_Bookings_Timezone_Settings singleton
+	 * Returns WC_Accommodation_Booking_Admin_Product_Settings singleton
 	 *
-	 * Ensures only one instance of WC_Bookings_Timezone_Settings is created.
+	 * Ensures only one instance of WC_Accommodation_Booking_Admin_Product_Settings is created.
 	 *
 	 * @since 1.13.0
-	 * @return WC_Bookings_Timezone_Settings - Main instance.
+	 * @return WC_Accommodation_Booking_Admin_Product_Settings Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -212,7 +214,10 @@ class WC_Accommodation_Booking_Admin_Product_Settings extends WC_Settings_API {
 
 	/**
 	 * Outputs a time selector input box
-	 * @param  array $value The "setting" info from init_form_fields.
+	 *
+	 * @param  string $key   Field key.
+	 * @param  array  $value The "setting" info from init_form_fields.
+	 * @return string|false Field HTML, or false when output buffering is not active.
 	 */
 	public function generate_accommodation_time_html( $key, $value ) {
 		$field_key    = $this->get_field_key( $key );

@@ -10,7 +10,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 	 * Mostly inherited from WC_Product_Booking (code reuse!) but overrides a few methods
 	 *
 	 * @class   WC_Product_Accommodation_Booking
-	 * @version 1.3.13
+	 * @version 1.3.15
 	 */
 	class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 
@@ -55,7 +55,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		 *
 		 * WC_Product_Accommodation_Booking constructor.
 		 *
-		 * @param $product
+		 * @param int|WC_Product|object $product Product to init.
 		 */
 		public function __construct( $product ) {
 			$this->product_type = $this->get_type();
@@ -237,13 +237,16 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		 * @param  integer $resource_id
 		 * @param  integer $from The starting date for the set of blocks
 		 * @param  integer $to
+		 * @param  bool    $include_sold_out Whether to include sold-out blocks.
 		 * @return array
 		 */
 		public function get_time_slots( $blocks, $resource_id = 0, $from = 0, $to = 0, $include_sold_out = false ) {
 			$bookable_product = $this;
 
+			// Equivalent v2/v3 selections share a cache; empty selections also need their own key.
+			$blocks          = $this->normalize_blocks_array( $blocks );
 			$product_id      = $bookable_product->get_id();
-			$transient_name  = 'book_ts_' . md5( http_build_query( array( $product_id, $resource_id, $from, $to ) ) );
+			$transient_name  = 'book_ts_' . md5( http_build_query( array( $product_id, $resource_id, $from, $to, wp_json_encode( array_keys( $blocks ) ) ) ) );
 			$product_cache   = class_exists( 'WC_Bookings_Cache' ) && method_exists( 'WC_Bookings_Cache', 'get_product_cache' ) && method_exists( 'WC_Bookings_Cache', 'set_product_cache' );
 			$available_slots = $product_cache ? WC_Bookings_Cache::get_product_cache( $transient_name, $product_id ) : get_transient( $transient_name );
 
@@ -263,10 +266,6 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 				$available_slots  = array();
 				$has_qty          = ! is_null( $booking_resource ) ? $booking_resource->has_qty() : false;
 				$has_resources    = $bookable_product->has_resources();
-
-				// Same contract as get_blocks_in_range(): WC Bookings 3.0+ passes [ timestamp => booked_count ];
-				// older versions may pass a flat list of timestamps. Normalize so the foreach always uses real timestamps as keys.
-				$blocks = $this->normalize_blocks_array( $blocks );
 
 				foreach ( $blocks as $block => $booked_slots ) {
 					$check_in  = self::get_check_times( 'in', $product_id );
@@ -381,12 +380,12 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		 * The WC_Product_Booking class does not account for 'nights' as a valid duration unit so it retrieves every minute of each day as a block,
 		 * severely slowing down the load time of the page.
 		 *
-		 * @param       $start_date
-		 * @param       $end_date
-		 * @param array      $intervals
-		 * @param int        $resource_id
-		 * @param array      $booked
-		 * @param bool       $get_past_times
+		 * @param int   $start_date     Range start timestamp.
+		 * @param int   $end_date       Range end timestamp.
+		 * @param array $intervals
+		 * @param int   $resource_id
+		 * @param array $booked
+		 * @param bool  $get_past_times
 		 *
 		 * @return array
 		 */
@@ -450,7 +449,8 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 		 * @param string $type       The type, check_in or check_out.
 		 * @param int    $product_id The product ID.
 		 *
-		 * @return string The time, either from options or default or from the filtered value.
+		 * @return string|false|null The time, either from options or default or from the filtered value.
+		 *                           An empty string, false or null from the filter means no time.
 		 */
 		public static function get_check_times( $type, $product_id = 0 ) {
 			$option     = get_option( 'woocommerce_accommodation_bookings_times_settings' );
@@ -468,13 +468,22 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 			/**
 			 * Filter the check-in/out times for a specific product.
 			 *
+			 * @since 1.1.40
+			 *
 			 * @param string $check_time The check-in/out time stored in the database.
 			 * @param string $type       The type, check_in or check_out.
 			 * @param int    $product_id The product ID.
 			 *
 			 * @return string The filtered/original time.
 			 */
-			return apply_filters( 'woocommerce_accommodation_booking_get_check_times', $check_time, $type, (int) $product_id );
+			$filtered_time = apply_filters( 'woocommerce_accommodation_booking_get_check_times', $check_time, $type, (int) $product_id );
+
+			// Bookings store the time as H:i; an empty time (also false or null, as before) means none is set.
+			if ( '' === $filtered_time || false === $filtered_time || null === $filtered_time || ( is_string( $filtered_time ) && preg_match( '/^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/D', $filtered_time ) ) ) {
+				return $filtered_time;
+			}
+
+			return $check_time;
 		}
 
 		/**

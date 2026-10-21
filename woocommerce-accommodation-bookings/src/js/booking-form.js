@@ -64,18 +64,32 @@ import {
 				attributes.class.push( 'fully_booked_end_days' );
 			}
 
+			// Re-evaluated on every redraw, including month navigation, which
+			// skips the refreshed hook. Same condition as that hook.
+			const next_date_type =
+				get_jquery_element( date_picker ).data( 'start_or_end_date' );
+			const is_check_in_selected =
+				!! $form.find( 'input.booking_date_day' ).val() &&
+				next_date_type === 'end';
+			if (
+				attributes.class.indexOf(
+					is_check_in_selected
+						? 'fully_booked_end_days'
+						: 'fully_booked_start_days'
+				) > -1
+			) {
+				attributes.class.push(
+					'ui-datepicker-unselectable',
+					'ui-state-disabled'
+				);
+			}
+
 			if (
 				attributes.class.indexOf( 'fully_booked_start_days' ) > -1 ||
 				attributes.class.indexOf( 'fully_booked_end_days' ) > -1
 			) {
 				attributes.title = '';
 			}
-
-			// Add data attributes for easier access to date values
-			// This ensures screen reader text works correctly for all months
-			attributes[ 'data-day' ] = day;
-			attributes[ 'data-month' ] = month - 1; // 0-based for consistency with JS Date
-			attributes[ 'data-year' ] = year;
 
 			return attributes;
 		}
@@ -136,7 +150,14 @@ import {
 				'aria-label': message,
 				'aria-expanded': 'false',
 				'aria-controls': tooltipId,
-			} ).append( $( INFO_ICON_SVG ) );
+			} )
+				.append( $( INFO_ICON_SVG ) )
+				// Bound on the icon itself: a handler delegated to `document`
+				// runs after jQuery UI's `selectDay` click on the cell.
+				.on( 'click mousedown', ( e ) => {
+					e.stopPropagation();
+					e.preventDefault();
+				} );
 			const $tooltip = $( '<div>', {
 				class: 'partial-availability-tooltip',
 				id: tooltipId,
@@ -177,16 +198,6 @@ import {
 			);
 		} );
 	};
-
-	// Prevent date selection when clicking the info icon button.
-	$( document ).on(
-		'click mousedown',
-		'.partial-availability-info',
-		function ( e ) {
-			e.stopPropagation();
-			e.preventDefault();
-		}
-	);
 
 	// WCAG 1.4.13: dismiss (Escape), hoverable tooltip; 4.1.2: aria-expanded.
 	$( document ).on(
@@ -307,8 +318,14 @@ import {
 	 * @return {string} Formatted date string.
 	 */
 	const formatDateForScreenReader = ( $cell ) => {
-		// Get day from data-day attribute or extract from text content
-		let day = $cell.attr( 'data-day' );
+		// Bookings 3.7.0+ marks every cell with its own date, including days
+		// of the adjacent months, as date-year-*, date-month-* and date-date-*.
+		const classes = ` ${ $cell.attr( 'class' ) || '' } `;
+		const getDatePart = ( part ) =>
+			classes.match( new RegExp( ` date-${ part }-(\\d+) ` ) )?.[ 1 ];
+
+		// Get day from the cell class or extract from text content
+		let day = getDatePart( 'date' );
 		if ( ! day ) {
 			const $dayElement = $cell.find( 'span, a' ).first();
 			const textContent = $dayElement.length
@@ -317,9 +334,9 @@ import {
 			day = textContent.trim().match( /^\d+/ )?.[ 0 ];
 		}
 
-		// Get month and year from cell attributes or datepicker header
-		let dataMonth = $cell.attr( 'data-month' );
-		let dataYear = $cell.attr( 'data-year' );
+		// Get month and year from the cell class, jQuery UI's attributes on selectable cells or datepicker header
+		let dataMonth = getDatePart( 'month' ) ?? $cell.attr( 'data-month' );
+		let dataYear = getDatePart( 'year' ) ?? $cell.attr( 'data-year' );
 
 		if ( dataMonth === undefined || dataYear === undefined ) {
 			const $datepicker = $cell.closest( '.ui-datepicker' );
