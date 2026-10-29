@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * WC Accommodation Bookings class
  *
  * @class   WC_Accommodation_Bookings_Plugin
- * @version 1.3.15
+ * @version 1.3.16
  */
 class WC_Accommodation_Bookings_Plugin {
 
@@ -189,7 +189,7 @@ class WC_Accommodation_Bookings_Plugin {
 					$message = esc_html__( 'Accommodation Bookings requires WooCommerce Bookings plugin activated.', 'woocommerce-accommodation-bookings' );
 					break;
 				case 'BOOKINGS_VERSION_TOO_OLD':
-					$message = esc_html__( 'Accommodation Bookings requires WooCommerce Bookings version 1.9+.', 'woocommerce-accommodation-bookings' );
+					$message = esc_html__( 'Accommodation Bookings requires WooCommerce Bookings version 3.10+.', 'woocommerce-accommodation-bookings' );
 					break;
 				case 'PHP_VERSION_TOO_OLD':
 					$message = esc_html__( 'Accommodation Bookings requires PHP version 7.4+.', 'woocommerce-accommodation-bookings' );
@@ -360,6 +360,11 @@ class WC_Accommodation_Bookings_Plugin {
 	 */
 	private function get_accommodation_product_from_block() {
 		global $post;
+		/**
+		 * The current post, if any.
+		 *
+		 * @var \WP_Post|null $post
+		 */
 
 		if ( ! $post || ! has_block( 'woocommerce/single-product', $post ) ) {
 			return null;
