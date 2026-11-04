@@ -10,7 +10,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 	 * Mostly inherited from WC_Product_Booking (code reuse!) but overrides a few methods
 	 *
 	 * @class   WC_Product_Accommodation_Booking
-	 * @version 1.3.16
+	 * @version 1.3.17
 	 */
 	class WC_Product_Accommodation_Booking extends WC_Product_Booking {
 
@@ -334,7 +334,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 								}
 							} else {
 								$qty_booked_in_block += $qty_to_add;
-								$resources[0]         = ( isset( $resources[0] ) ? $resources[0] : 0 ) - $qty_to_add;
+								$resources[0]        -= $qty_to_add;
 							}
 						}
 					}
@@ -349,7 +349,7 @@ if ( ! class_exists( 'WC_Product_Accommodation_Booking' ) && class_exists( 'WC_P
 				if ( $product_cache ) {
 					WC_Bookings_Cache::set_product_cache( $transient_name, $available_slots, YEAR_IN_SECONDS, $product_id );
 				} else {
-					set_transient( $transient_name, $available_slots, YEAR_IN_SECONDS );
+					WC_Bookings_Cache::set( $transient_name, $available_slots, YEAR_IN_SECONDS );
 				}
 			}
 
