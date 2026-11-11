@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * WC Accommodation Bookings class
  *
  * @class   WC_Accommodation_Bookings_Plugin
- * @version 1.3.16
+ * @version 1.4.0
  */
 class WC_Accommodation_Bookings_Plugin {
 
@@ -129,7 +129,7 @@ class WC_Accommodation_Bookings_Plugin {
 
 		$rest_request = isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), 'wp-json/wc-bookings' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-		if ( is_admin() || $rest_request ) {
+		if ( is_admin() || $rest_request || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 			add_action( 'init', array( $this, 'rest_admin_includes' ) );
 		}
 
@@ -448,9 +448,22 @@ class WC_Accommodation_Bookings_Plugin {
 
 				// Convert from the old to the new structure.
 				foreach ( $pricing as &$pricing_row ) {
+					if ( ! is_array( $pricing_row ) || ! array_key_exists( 'override_block', $pricing_row ) ) {
+						continue;
+					}
+
 					$pricing_row['base_cost'] = $pricing_row['cost'] = 0; //phpcs:ignore
 					$new_cost                 = $pricing_row['override_block'];
 					unset( $pricing_row['override_block'] );
+
+					// Bookings skipped a rule with an empty block cost, so it becomes a rule that changes nothing.
+					if ( empty( $new_cost ) ) {
+						$pricing_row['base_modifier'] = $pricing_row['modifier'] = 'plus'; //phpcs:ignore
+						continue;
+					}
+
+					$new_cost = floatval( $new_cost );
+
 					$pricing_row['base_modifier'] = $pricing_row['modifier'] = $new_cost > $original_base_cost ? 'plus' : 'minus'; //phpcs:ignore
 					$pricing_row['cost']          = absint( $new_cost - $original_base_cost );
 				}

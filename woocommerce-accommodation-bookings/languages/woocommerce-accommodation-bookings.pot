@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Accommodation Bookings 1.3.17\n"
+"Project-Id-Version: WooCommerce Accommodation Bookings 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-accommodation-bookings\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T09:21:13+00:00\n"
+"POT-Creation-Date: 2026-11-11T08:00:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: woocommerce-accommodation-bookings\n"
@@ -84,38 +84,38 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:40
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:42
 msgid "Accommodation product"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:66
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:73
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:68
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:75
 msgid "Person types were not saved. Please reload the product and try again."
 msgstr ""
 
 #. translators: %d: person type number
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:322
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:324
 #, php-format
 msgid "Person Type #%d"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:376
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:378
 msgid "Clear stale booking transients"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:377
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:379
 msgid "Clear transients"
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:378
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:380
 msgid "This tool will clear stale booking transients that may cause availability or booking issues."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:394
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:396
 msgid "Error: You do not have permission to run this tool."
 msgstr ""
 
-#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:400
+#: includes/admin/class-wc-accommodation-booking-rest-and-admin.php:402
 msgid "Stale booking transients cleared successfully."
 msgstr ""
 
@@ -320,7 +320,7 @@ msgid "Restrict the days of the week that are able to be selected on the calenda
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability.php:110
-#: includes/admin/views/html-accommodation-booking-rates.php:34
+#: includes/admin/views/html-accommodation-booking-rates.php:35
 msgid "Range type"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid "The lower the priority number, the earlier this rule gets applied. By def
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-availability.php:126
-#: includes/admin/views/html-accommodation-booking-rates.php:49
+#: includes/admin/views/html-accommodation-booking-rates.php:50
 msgid "Add Range"
 msgstr ""
 
@@ -430,38 +430,42 @@ msgid "Range of nights during the week"
 msgstr ""
 
 #: includes/admin/views/html-accommodation-booking-rates.php:15
+msgid "Accommodation bookings support fixed costs per person or person type. Pricing tiers based on the number of persons are not supported."
+msgstr ""
+
+#: includes/admin/views/html-accommodation-booking-rates.php:16
 msgid "Standard room rate"
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:15
+#: includes/admin/views/html-accommodation-booking-rates.php:16
 msgid "Standard cost for booking the room."
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:21
+#: includes/admin/views/html-accommodation-booking-rates.php:22
 msgid "Display cost"
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:21
+#: includes/admin/views/html-accommodation-booking-rates.php:22
 msgid "The cost is displayed to the user on the frontend. Leave blank to have it calculated for you. If a booking has varying costs, this will be prefixed with the word \"from:\"."
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:35
+#: includes/admin/views/html-accommodation-booking-rates.php:36
 msgid "Starting"
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:36
+#: includes/admin/views/html-accommodation-booking-rates.php:37
 msgid "Ending"
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:36
+#: includes/admin/views/html-accommodation-booking-rates.php:37
 msgid "Includes this date/night."
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:37
+#: includes/admin/views/html-accommodation-booking-rates.php:38
 msgid "Cost"
 msgstr ""
 
-#: includes/admin/views/html-accommodation-booking-rates.php:37
+#: includes/admin/views/html-accommodation-booking-rates.php:38
 msgid "Cost for this time period."
 msgstr ""
 
